@@ -1,6 +1,6 @@
 from src.character.monsters.monster import Monster
 from src.character.player import Player
-from src.game import Action
+from src.action import Action
 from src.ui import UI
 
 
@@ -12,7 +12,7 @@ class FightProcessor:
             ui.show_stats(player)
             ui.show_stats(enemy)
             enemy_intent = enemy.choose_intent()
-            player_choice = ui.get_user_choice(enemy_intent)
+            player_choice = ui.get_user_choice(enemy, player)
 
             if enemy_intent == Action.BLOCK:
                 enemy.block()
@@ -31,5 +31,8 @@ class FightProcessor:
 
             if player.health <= 0:
                 fight_is_ongoing = False
+
+            enemy.end_turn()
+            player.end_turn()
 
         return player.health > 0

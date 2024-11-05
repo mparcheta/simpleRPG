@@ -1,16 +1,15 @@
+import random
+
 from src.character.monsters.monster import Monster
 from src.character.player import Player
 from src.fight_processor import FightProcessor
 from src.ui.command_line_ui import UI
-
-
-class Action:
-    ATTACK = "atk"
-    BLOCK = "blk"
-    HEAL = "heal"
+from src.character.monsters import Goblin, Orc, Skeleton, Wolf
 
 
 class Game:
+    monsters_pool = [Goblin, Orc, Skeleton, Wolf]
+
     def __init__(self, ui: UI, fight_processor: FightProcessor):
         self.player = Player()
         self.ui = ui
@@ -41,5 +40,7 @@ class Game:
                 self.ui.game_over_screen(self.current_monster)
                 self.running = False
 
+
     def select_next_monster(self):
-        ...
+        monster_class = random.choice(Game.monsters_pool) #odwołanie bezpośrednio do class attr
+        self.current_monster = monster_class()

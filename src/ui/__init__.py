@@ -15,7 +15,7 @@ class UI(ABC):
         ...
 
     @abstractmethod
-    def get_user_choice(self, enemy_intent: str) -> str:
+    def get_user_choice(self, enemy: "Monster", player: "Player") -> str:
         ...
 
     @abstractmethod

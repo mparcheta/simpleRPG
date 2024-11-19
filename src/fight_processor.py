@@ -14,7 +14,7 @@ class FightProcessor:
             enemy_intent = enemy.choose_intent()
             player_choice = ui.get_user_choice(enemy, player)
 
-            if enemy_intent == Action.BLOCK:
+            if enemy_intent in (Action.BLOCK, Action.SHIELD_ATTACK):
                 enemy.block()
 
             if player_choice == Action.ATTACK:
@@ -23,10 +23,12 @@ class FightProcessor:
                 player.block()
             elif player_choice == Action.HEAL:
                 player.heal()
+            elif player_choice == Action.FIRE_BALL:
+                player.fireball_attack(enemy)
 
             if enemy.health <= 0:
                 fight_is_ongoing = False
-            elif enemy_intent == Action.ATTACK:
+            elif enemy_intent in (Action.ATTACK, Action.SHIELD_ATTACK):
                 enemy.attack(player)
 
             if player.health <= 0:

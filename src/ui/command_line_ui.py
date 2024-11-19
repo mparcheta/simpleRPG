@@ -46,6 +46,8 @@ class CommandLineUI(UI):
             Action.ATTACK: "Attack",
             Action.BLOCK: "Block",
             Action.HEAL: "Heal",
+            Action.FIRE_BALL: "Fire Ball",
+            Action.SHIELD_ATTACK: "Shield Attack",
         }
 
         return action_dict.get(action, action)

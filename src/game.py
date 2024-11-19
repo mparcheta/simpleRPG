@@ -4,11 +4,12 @@ from src.character.monsters.monster import Monster
 from src.character.player import Player
 from src.fight_processor import FightProcessor
 from src.ui.command_line_ui import UI
-from src.character.monsters import Goblin, Orc, Skeleton, Wolf
+from src.character.monsters import Goblin, Orc, Skeleton, Wolf, SkeletonWarrior
 
 
 class Game:
-    monsters_pool = [Goblin, Orc, Skeleton, Wolf]
+    monsters_pool = [Goblin, Orc, Skeleton, Wolf, SkeletonWarrior]
+    #monsters_pool = [SkeletonWarrior]
 
     def __init__(self, ui: UI, fight_processor: FightProcessor):
         self.player = Player()
@@ -23,7 +24,9 @@ class Game:
             if not self.current_monster:
                 self.select_next_monster()
 
-            fight_is_won = self.fight_processor.process_fight(self.player, self.current_monster, self.ui)
+            fight_is_won = self.fight_processor.process_fight(
+                self.player, self.current_monster, self.ui
+            )
 
             if fight_is_won:
                 self.player.gold += self.current_monster.gold_drop
@@ -40,7 +43,8 @@ class Game:
                 self.ui.game_over_screen(self.current_monster)
                 self.running = False
 
-
     def select_next_monster(self):
-        monster_class = random.choice(Game.monsters_pool) #odwołanie bezpośrednio do class attr
+        monster_class = random.choice(
+            Game.monsters_pool
+        )  # odwołanie bezpośrednio do class attr
         self.current_monster = monster_class()

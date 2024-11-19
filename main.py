@@ -21,3 +21,7 @@ if __name__ == "__main__":
 # Zrobić critical damage (podwajający) na podsstawie critical chance (dla każdego gracza/monstera niech to będzie stała. Niektóre potwory nie muszą mieć crit chance - wtedy trzeba zrobic osobna klase). Co każdy atak rzucamy kostką (moduł random) i na jego podstawie podwajamy dmg, który został NA JEDNĄ TURĘ albo nie.
 # Unluck hity - opcjonalnie
 # Ewentualnie dodanie expa (dorzucić statystykę level)
+
+
+# PD 12.11
+# Zaimplementować Skeleton Warrior

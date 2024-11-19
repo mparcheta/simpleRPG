@@ -21,6 +21,14 @@ class Player(Character):
         reduced_damage = max(damage - enemy.current_block, 0)
         enemy.health -= reduced_damage
 
+    def fireball_attack(self, enemy: Monster):
+        fireball_amount = self.mana
+        enemy.health -= fireball_amount
+
+        self.mana = (
+            0  # ustawiamy manę na 0, bo fireball attack docelowo zżera całą manę
+        )
+
     def block(self):
         self.is_blocking = True
 
@@ -52,6 +60,8 @@ class Player(Character):
             choices.append(Action.BLOCK)
         if self.mana >= Player.HEAL_MANA_COST:
             choices.append(Action.HEAL)
+        if self.mana > 0:
+            choices.append(Action.FIRE_BALL)
 
         return choices
 
